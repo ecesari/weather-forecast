@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\weatherForecast.Domain\weatherForecast.Domain.csproj" />
+    <ProjectReference Include="..\weatherForecast.Domain\WeatherForecast.Domain.csproj" />
   </ItemGroup>
 
 </Project>
