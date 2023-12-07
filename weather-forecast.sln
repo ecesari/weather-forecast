@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecast.Infrastruct
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecast.Api", "weatherForecast.Api\WeatherForecast.Api.csproj", "{8CC195F5-DA0C-4015-98CD-859728FE1251}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecast.Tests", "WeatherForecast.Tests\WeatherForecast.Tests.csproj", "{1944DE69-7AC1-4909-8377-2E1D093237DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,8 +35,15 @@ Global
 		{8CC195F5-DA0C-4015-98CD-859728FE1251}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CC195F5-DA0C-4015-98CD-859728FE1251}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CC195F5-DA0C-4015-98CD-859728FE1251}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1944DE69-7AC1-4909-8377-2E1D093237DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1944DE69-7AC1-4909-8377-2E1D093237DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1944DE69-7AC1-4909-8377-2E1D093237DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1944DE69-7AC1-4909-8377-2E1D093237DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0B2F7BD-EF6D-49B1-AEF6-4FD8DD6C9C9C}
 	EndGlobalSection
 EndGlobal

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using WeatherForecast.Application.Clients.Queries.GetClients;
 using WeatherForecast.Domain.Repository;
 using MediatR;
+using WeatherForecast.Application.WeatherForecasts.Queries.GetWeatherForecasts;
 
 namespace WeatherForecast.Application.WeatherForecast.Queries.GetWeatherForecasts
 {
@@ -23,11 +23,9 @@ namespace WeatherForecast.Application.WeatherForecast.Queries.GetWeatherForecast
 
         public async Task<List<WeatherForecastResponse>> Handle(GetWeatherForecastsQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-
-            var forecasts = await repository.GetAllAsync();
-            var returnModel = mapper.Map<List<WeatherForecastResponse>>(forecasts);
-            return returnModel;
+            var forecasts = repository.GetBetweenDates(request.StartDate, request.EndDate);
+            var list = mapper.Map<List<WeatherForecastResponse>>(forecasts);
+            return list;
         }
     }
 }

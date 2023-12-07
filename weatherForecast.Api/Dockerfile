@@ -11,17 +11,17 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0-nanoserver-1809 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["weatherForecast.Api/weatherForecast.Api.csproj", "weatherForecast.Api/"]
-RUN dotnet restore "./weatherForecast.Api/./weatherForecast.Api.csproj"
+COPY ["WeatherForecast.Api/WeatherForecast.Api.csproj", "WeatherForecast.Api/"]
+RUN dotnet restore "./WeatherForecast.Api/./WeatherForecast.Api.csproj"
 COPY . .
-WORKDIR "/src/weatherForecast.Api"
-RUN dotnet build "./weatherForecast.Api.csproj" -c %BUILD_CONFIGURATION% -o /app/build
+WORKDIR "/src/WeatherForecast.Api"
+RUN dotnet build "./WeatherForecast.Api.csproj" -c %BUILD_CONFIGURATION% -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./weatherForecast.Api.csproj" -c %BUILD_CONFIGURATION% -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./WeatherForecast.Api.csproj" -c %BUILD_CONFIGURATION% -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "weatherForecast.Api.dll"]
+ENTRYPOINT ["dotnet", "WeatherForecast.Api.dll"]

@@ -8,6 +8,7 @@ namespace WeatherForecast.Application.Clients.Commands.SetWeatherForecastCommand
     public class SetWeatherForecastCommand : IRequest<Guid>
     {
         public int Temperature { get; set; }
+        public DateOnly? Date { get; set; }
     }
 
     public class SetWeatherForecastCommandHandler : IRequestHandler<SetWeatherForecastCommand, Guid>
@@ -21,14 +22,14 @@ namespace WeatherForecast.Application.Clients.Commands.SetWeatherForecastCommand
             this.weatherSummaryRepository = weatherSummaryRepository;
         }
 
-        public async Task<Guid> Handle(SetWeatherForecastCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(SetWeatherForecastCommand command, CancellationToken cancellationToken)
         {
-            var weatherSummary = weatherSummaryRepository.GetByTemperature(request.Temperature) ?? throw new EntityNotFoundException(nameof(WeatherSummary), request.Temperature);
-            var entity = new Forecast { Date = DateOnly.FromDateTime(DateTime.Now), TemperatureC = request.Temperature, Summary = weatherSummary.Description };
+            var weatherSummary = weatherSummaryRepository.GetByTemperature(command.Temperature) ?? throw new EntityNotFoundException(nameof(WeatherSummary), command.Temperature);
+            var date = command.Date ?? DateOnly.FromDateTime(DateTime.Now);
+            var entity = new Forecast { Date = date, Temperature = command.Temperature, Summary = weatherSummary.Description };
             await repository.AddAsync(entity);
             return entity.Id;
         }
     }
 
 }
- 

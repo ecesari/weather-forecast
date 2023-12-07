@@ -1,7 +1,8 @@
-﻿namespace weatherForecast.Api.Models
+﻿namespace WeatherForecast.Api.Models
 {
     public class SetWeatherForecastModel
     {
         public int Temperature { get; set; }
+        public DateOnly Date { get; set; }
     }
 }
