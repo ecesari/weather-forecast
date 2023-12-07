@@ -25,6 +25,7 @@ namespace WeatherForecast.Application.Clients.Commands.SetWeatherForecastCommand
         public async Task<Guid> Handle(SetWeatherForecastCommand command, CancellationToken cancellationToken)
         {
             var weatherSummary = weatherSummaryRepository.GetByTemperature(command.Temperature) ?? throw new EntityNotFoundException(nameof(WeatherSummary), command.Temperature);
+            var forecastAlreadyExists = command.Date.HasValue && repository.ForecastExistsForDate(command.Date.Value);
             var date = command.Date ?? DateOnly.FromDateTime(DateTime.Now);
             var entity = new Forecast { Date = date, Temperature = command.Temperature, Summary = weatherSummary.Description };
             await repository.AddAsync(entity);

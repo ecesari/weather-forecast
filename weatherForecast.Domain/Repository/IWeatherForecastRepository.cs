@@ -5,5 +5,6 @@ namespace WeatherForecast.Domain.Repository
     public interface IWeatherForecastRepository : IBaseRepository<Forecast>
     {
         List<Forecast> GetBetweenDates(DateOnly startDate, DateOnly endDate);
+        bool ForecastExistsForDate(DateOnly date);
     }
 }

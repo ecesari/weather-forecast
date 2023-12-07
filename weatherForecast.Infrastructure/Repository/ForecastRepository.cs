@@ -14,8 +14,14 @@ namespace WeatherForecast.Infrastructure.Repository
 
         public List<Forecast> GetBetweenDates(DateOnly startDate, DateOnly endDate)
         {
-            var forecasts = applicationDb.WeatherForecasts.Where(x=> x.Date >= startDate && x.Date <= endDate).ToList();
+            var forecasts = applicationDb.WeatherForecasts.Where(x => x.Date >= startDate && x.Date <= endDate).ToList();
             return forecasts;
+        }
+
+        public bool ForecastExistsForDate(DateOnly date)
+        {
+            var forecastExists = applicationDb.WeatherForecasts.Where(x => x.Date == date).Any();
+            return forecastExists;
         }
     }
 }
