@@ -1,4 +1,4 @@
-﻿namespace weatherForecast.Application.Clients.Queries.GetClients
+﻿namespace WeatherForecast.Application.Clients.Queries.GetClients
 {
     public class WeatherForecastResponse
     {

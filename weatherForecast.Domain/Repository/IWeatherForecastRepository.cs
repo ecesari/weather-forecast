@@ -1,8 +1,8 @@
-﻿using weatherForecast.Domain.Entities;
+﻿using WeatherForecast.Domain.Entities;
 
-namespace weatherForecast.Domain.Repository
+namespace WeatherForecast.Domain.Repository
 {
-    public interface IWeatherForecastRepository : IBaseRepository<WeatherForecast>
+    public interface IWeatherForecastRepository : IBaseRepository<Forecast>
     {
     }
 }

@@ -1,8 +1,9 @@
-﻿using weatherForecast.Domain.Entities;
+﻿using WeatherForecast.Domain.Entities;
 
-namespace weatherForecast.Domain.Repository
+namespace WeatherForecast.Domain.Repository
 {
     public interface IWeatherSummaryRepository : IBaseRepository<WeatherSummary>
     {
+        WeatherSummary? GetByTemperature(int temperature);
     }
 }

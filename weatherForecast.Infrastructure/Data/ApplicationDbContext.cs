@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using weatherForecast.Domain.Entities;
+using WeatherForecast.Domain.Entities;
 
-namespace weatherForecast.Infrastructure.Data
+namespace WeatherForecast.Infrastructure.Data
 {
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
-        public DbSet<WeatherForecast> WeatherForecasts { get; set; }
+        public DbSet<Forecast> WeatherForecasts { get; set; }
         public DbSet<WeatherSummary> WeatherSummaries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

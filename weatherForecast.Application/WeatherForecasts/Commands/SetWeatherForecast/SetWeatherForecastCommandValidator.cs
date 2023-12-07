@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using weatherForecast.Application.Clients.Commands.CreateAppointment;
+using WeatherForecast.Application.Clients.Commands.CreateAppointment;
 
-namespace weatherForecast.Application.Psychologists.Commands.CreateAvailability
+namespace WeatherForecast.Application.Psychologists.Commands.CreateAvailability
 {
     class SetWeatherForecastCommandValidator : AbstractValidator<SetWeatherForecastCommand>
     {

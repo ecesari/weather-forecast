@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using weatherForecast.Application.Clients.Queries.GetClients;
-using weatherForecast.Domain.Repository;
+using WeatherForecast.Application.Clients.Queries.GetClients;
+using WeatherForecast.Domain.Repository;
 using MediatR;
 
-namespace weatherForecast.Application.WeatherForecast.Queries.GetWeatherForecasts
+namespace WeatherForecast.Application.WeatherForecast.Queries.GetWeatherForecasts
 {
     public class GetWeatherForecastsQuery : IRequest<List<WeatherForecastResponse>>
     {

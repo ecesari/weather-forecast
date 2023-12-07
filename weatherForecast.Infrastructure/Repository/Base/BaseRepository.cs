@@ -1,17 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using weatherForecast.Domain.Entities;
-using weatherForecast.Domain.Repository;
-using weatherForecast.Infrastructure.Data;
+using WeatherForecast.Domain.Entities;
+using WeatherForecast.Domain.Repository;
+using WeatherForecast.Infrastructure.Data;
 
-namespace weatherForecast.Infrastructure.Repository.Base
+namespace WeatherForecast.Infrastructure.Repository.Base
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         protected readonly ApplicationDbContext applicationDb;
 
-        public BaseRepository(ApplicationDbContext insuranceDb)
+        public BaseRepository(ApplicationDbContext applicationDb)
         {
-            applicationDb = insuranceDb;
+            this.applicationDb = applicationDb;
         }
 
         public async Task<T> AddAsync(T entity)

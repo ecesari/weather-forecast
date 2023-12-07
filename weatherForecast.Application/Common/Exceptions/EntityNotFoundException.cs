@@ -1,4 +1,4 @@
-﻿namespace weatherForecast.Application.Common.Exceptions
+﻿namespace WeatherForecast.Application.Common.Exceptions
 {
     public class EntityNotFoundException : Exception
     {

@@ -1,4 +1,4 @@
-﻿namespace weatherForecast.Infrastructure.Data
+﻿namespace WeatherForecast.Infrastructure.Data
 {
     public class SeedData
     {

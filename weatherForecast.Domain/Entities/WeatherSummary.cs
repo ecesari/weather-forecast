@@ -1,4 +1,4 @@
-﻿namespace weatherForecast.Domain.Entities
+﻿namespace WeatherForecast.Domain.Entities
 {
     public class WeatherSummary : BaseEntity
     {

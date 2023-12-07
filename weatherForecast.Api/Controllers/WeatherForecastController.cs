@@ -1,4 +1,7 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using WeatherForecast.Application.Clients.Commands.SetWeatherForecastCommand;
 
 namespace weatherForecast.Api.Controllers
 {
@@ -6,28 +9,26 @@ namespace weatherForecast.Api.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        //private static readonly string[] Summaries = new[]
-        //{
-        //    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        //};
+        private readonly IMediator mediator;
 
-        //private readonly ILogger<WeatherForecastController> _logger;
+        public WeatherForecastController(IMediator mediator)
+        {
+            this.mediator = mediator;
+        }
 
-        //public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        //{
-        //    _logger = logger;
-        //}
-
-        //[HttpGet(Name = "GetWeatherForecast")]
-        //public IEnumerable<string> Get()
-        //{
-        //    return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        //    {
-        //        Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-        //        TemperatureC = Random.Shared.Next(-20, 55),
-        //        Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        //    })
-        //    .ToArray();
-        //}
+        /// <summary>
+        /// Create a forecast for today
+        /// </summary>
+        /// <param name="command">set today's temperature in Celcius</param>
+        /// <returns>Ok if forecast was saved</returns>
+        [HttpPost]
+        [ProducesResponseType(typeof(Guid), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        public async Task<ActionResult> CreateForecast([FromBody] SetWeatherForecastCommand command)
+        {
+            var response = await mediator.Send(command);
+            return Ok(response);
+        }
     }
 }
