@@ -5,9 +5,9 @@ using WeatherForecast.Infrastructure.Repository.Base;
 
 namespace WeatherForecast.Infrastructure.Repository
 {
-    public class ForecastRepository : BaseRepository<Forecast>, IWeatherForecastRepository
+    public class WeatherForecastRepository : BaseRepository<Forecast>, IWeatherForecastRepository
     {
-        public ForecastRepository(ApplicationDbContext applicationDbContext) : base(applicationDbContext)
+        public WeatherForecastRepository(ApplicationDbContext applicationDbContext) : base(applicationDbContext)
         {
 
         }

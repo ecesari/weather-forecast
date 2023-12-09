@@ -1,4 +1,6 @@
 using Microsoft.OpenApi.Models;
+using WeatherForecast.Api.ServiceCollections;
+using WeatherForecast.Application.WeatherForecast.Queries.GetWeatherForecasts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,10 @@ builder.Services.AddSwaggerGen(swagger =>
 
 
 });
+
+builder.Services.AddRepositories();
+builder.Services.AddAutoMapper();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetWeatherForecastsQuery).Assembly));
 
 var app = builder.Build();
 

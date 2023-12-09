@@ -24,14 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\weatherForecast.Api\WeatherForecast.Api.csproj" />
     <ProjectReference Include="..\weatherForecast.Application\WeatherForecast.Application.csproj" />
     <ProjectReference Include="..\weatherForecast.Domain\WeatherForecast.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Mappers\" />
-    <Folder Include="Repository\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\weatherForecast.Infrastructure\WeatherForecast.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
