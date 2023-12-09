@@ -13,7 +13,7 @@ namespace WeatherForecast.Api.ServiceCollections
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-            //services.AddScoped<IWeatherForecastRepository, WeatherForecast.Infrastructure.Repository.WeatherForecastRepository>();
+            services.AddScoped<IWeatherForecastRepository, WeatherForecastRepository>();
             services.AddScoped<IWeatherSummaryRepository, WeatherSummaryRepository>();
 
             return services;

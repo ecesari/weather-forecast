@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using WeatherForecast.Api.Models;
 using WeatherForecast.Application.Clients.Commands.SetWeatherForecastCommand;
+using WeatherForecast.Application.WeatherForecast.Queries.GetWeatherForecasts;
 
 namespace WeatherForecast.Api.Controllers
 {
@@ -52,6 +53,22 @@ namespace WeatherForecast.Api.Controllers
             return Ok(response);
         }
 
- 
+
+        /// <summary>
+        /// Get forecast between dates
+        /// </summary>
+        /// <param name="model">dates to get temperature</param>
+        /// <returns>List of forecasts if they exist</returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(List<DailyWeatherForecastModel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> GetForecast([FromBody] GetWeatherForecastModel model)
+        {
+            var query = mapper.Map<GetWeatherForecastsQuery>(model);
+            var response = await mediator.Send(query);
+            var responseModel = mapper.Map<List<DailyWeatherForecastModel>>(response);
+            return Ok(responseModel);
+        }
     }
 }

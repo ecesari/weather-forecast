@@ -1,6 +1,8 @@
 using Microsoft.OpenApi.Models;
 using WeatherForecast.Api.ServiceCollections;
 using WeatherForecast.Application.WeatherForecast.Queries.GetWeatherForecasts;
+using WeatherForecast.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,10 +20,9 @@ builder.Services.AddSwaggerGen(swagger =>
         Version = "v1",
         Title = " Weather Forecast APIs"
     });
-
-
 });
 
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("ApplicationDb"));
 builder.Services.AddRepositories();
 builder.Services.AddAutoMapper();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetWeatherForecastsQuery).Assembly));
