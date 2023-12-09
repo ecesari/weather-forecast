@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\weatherForecast.Api\WeatherForecast.Api.csproj" />
     <ProjectReference Include="..\weatherForecast.Domain\WeatherForecast.Domain.csproj" />
   </ItemGroup>
 
