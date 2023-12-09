@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WeatherForecast.Domain.Entities;
+﻿using WeatherForecast.Domain.Entities;
 
 namespace WeatherForecast.Infrastructure.Data
 {
     public class SeedData
     {
+        private const int NoForecasts = 20;
+
         private readonly ApplicationDbContext _context;
 
         public SeedData(ApplicationDbContext context)
@@ -13,10 +14,13 @@ namespace WeatherForecast.Infrastructure.Data
         }
         public void Seed()
         {
-            if (_context.WeatherSummaries == null)
+            if (_context.WeatherSummaries.Count() == 0)
             {
                 var summaries = CreateSummaries();
                 _context.WeatherSummaries.AddRange(summaries);
+
+                var forecasts = CreateForecasts(summaries);
+                _context.WeatherForecasts.AddRange(forecasts);
 
                 _context.SaveChanges();
             }
@@ -40,6 +44,25 @@ namespace WeatherForecast.Infrastructure.Data
             ];
 
             return summaries;
+        }
+
+        private static List<Forecast> CreateForecasts(List<WeatherSummary> summaries)
+        {
+            var todaysDate = DateOnly.FromDateTime(DateTime.Now);
+            var forecasts = new List<Forecast>();
+            var random = new Random();
+
+            for (int i = -10; i < summaries.Count; i++)
+            {
+                forecasts.Add(new Forecast()
+                {
+                    Summary = $"Description {i + 11}",
+                    Temperature = random.Next(-60, 60),
+                    Date = todaysDate.AddDays(i),
+                });
+            }
+
+            return forecasts;
         }
     }
 }
