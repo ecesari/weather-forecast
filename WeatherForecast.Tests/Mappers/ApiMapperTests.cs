@@ -30,30 +30,17 @@ namespace WeatherForecast.Tests.Mappers
         }
 
         [Theory]
-        [InlineData(2023, 12, 20, 20)]
+        [InlineData(2023, 1, 31, 20)]
         public void Given_ForecastModel_ShouldReturn_ForecastCommand(int dateYear, int dateMonth, int dateDay, int temperature)
         {
-            var model = new SetWeatherForecastModel { Date = new DateOnly(dateYear, dateMonth, dateDay), Temperature = temperature };
-            var response = mapper.Map<SetWeatherForecastCommand>(model);
+            var dateTime = new DateTime(dateYear, dateMonth, dateDay);
+            var model = new SetWeatherForecastModel { Date = dateTime, Temperature = temperature };
+            var command = mapper.Map<SetWeatherForecastCommand>(model);
 
-            Assert.NotNull(response);
-            Assert.Equal(model.Date, response.Date);
-            Assert.Equal(model.Temperature, response.Temperature);
+            Assert.NotNull(command);
+            Assert.Equal(DateOnly.FromDateTime(dateTime), command.Date);
+            Assert.Equal(model.Temperature, command.Temperature);
         }
-
-
-        [Theory]
-        [InlineData(2023, 12, 20)]
-        public void Given_GetForecastModel_ShouldReturn_ForecastQuery(int dateYear, int dateMonth, int dateDay)
-        {
-            var model = new GetWeatherForecastModel { StartDate = new DateOnly(dateYear, dateMonth, dateDay), EndDate = new DateOnly(dateYear, dateMonth, dateDay) };
-            var response = mapper.Map<GetWeatherForecastsQuery>(model);
-
-            Assert.NotNull(response);
-            Assert.Equal(model.StartDate, response.StartDate);
-            Assert.Equal(model.EndDate, response.EndDate);
-        }
-
 
 
         [Theory]

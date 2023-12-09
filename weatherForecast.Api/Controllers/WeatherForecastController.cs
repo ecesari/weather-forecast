@@ -57,15 +57,15 @@ namespace WeatherForecast.Api.Controllers
         /// <summary>
         /// Get forecast between dates
         /// </summary>
-        /// <param name="model">dates to get temperature</param>
-        /// <returns>List of forecasts if they exist</returns>
+        /// <returns>List of forecasts for the next week>
         [HttpGet]
         [ProducesResponseType(typeof(List<DailyWeatherForecastModel>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> GetForecast([FromBody] GetWeatherForecastModel model)
+        public async Task<ActionResult> GetForecast()
         {
-            var query = mapper.Map<GetWeatherForecastsQuery>(model);
+            var today = DateOnly.FromDateTime(DateTime.Today);
+            var query = new GetWeatherForecastsQuery { StartDate = today, EndDate = today.AddDays(7) };
             var response = await mediator.Send(query);
             var responseModel = mapper.Map<List<DailyWeatherForecastModel>>(response);
             return Ok(responseModel);

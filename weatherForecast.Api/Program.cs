@@ -4,6 +4,8 @@ using WeatherForecast.Application.WeatherForecast.Queries.GetWeatherForecasts;
 using WeatherForecast.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Asp.Versioning;
+using FluentValidation.AspNetCore;
+using WeatherForecast.Application.WeatherForecasts.Commands.SetWeatherForecast;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +36,13 @@ builder.Services.AddApiVersioning(x =>
     x.AssumeDefaultVersionWhenUnspecified = true;
     x.ReportApiVersions = true;
 });
+
+builder.Services.AddFluentValidation(conf =>
+{
+    conf.RegisterValidatorsFromAssembly(typeof(SetWeatherForecastCommandValidator).Assembly);
+    conf.AutomaticValidationEnabled = false;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -49,11 +58,7 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<ApplicationDbContext>();
     var seedData = new SeedData(context);
     seedData.Seed();
-    //DataSeeder.Initialize(services);
 }
-//var context = app.Services.GetRequiredService<ApplicationDbContext>();
-//var seedData = new SeedData(context);
-//seedData.Seed();
 
 app.UseHttpsRedirection();
 

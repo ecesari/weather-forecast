@@ -4,6 +4,6 @@
     {
         public int MinTemperatureValue { get; set; }
         public int MaxTemperatureValue { get; set; }
-        public required string Description { get; set; }
+        public string Description { get; set; }
     }
 }

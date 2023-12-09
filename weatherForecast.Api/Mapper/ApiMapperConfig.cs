@@ -10,15 +10,17 @@ namespace WeatherForecast.Api.Mapper
     {
         public ApiMapperConfig()
         {
-            CreateMap<SetWeatherForecastModel, SetWeatherForecastCommand>();
+            CreateMap<SetWeatherForecastModel, SetWeatherForecastCommand>()
+                .ForMember(response => response.Date, opt => opt.MapFrom(src => DateOnly.FromDateTime(src.Date)));            
             CreateMap<int, SetWeatherForecastCommand>()
                 .ForMember(response => response.Temperature, opt => opt.MapFrom(src => src))
                 .ForMember(response => response.Date, opt => opt.MapFrom(src => DateOnly.MaxValue));
-            CreateMap<GetWeatherForecastModel, GetWeatherForecastsQuery>();
+            //CreateMap<GetWeatherForecastModel, GetWeatherForecastsQuery>()
+            //    .ForMember(response => response.StartDate, opt => opt.MapFrom(src => DateOnly.FromDateTime(src.StartDate)))
+            //    .ForMember(response => response.EndDate, opt => opt.MapFrom(src => DateOnly.FromDateTime(src.EndDate)));
             CreateMap<WeatherForecastResponse, DailyWeatherForecastModel>()
                 .ForMember(response => response.Date, opt => opt.MapFrom(src => src.Date.ToString("D")))
-                .ForMember(response => response.Description, opt => opt.MapFrom(src => src.Summary));
-            ;
+                .ForMember(response => response.Description, opt => opt.MapFrom(src => src.Summary));            
         }
     }
 }

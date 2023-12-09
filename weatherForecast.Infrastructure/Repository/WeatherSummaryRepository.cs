@@ -13,7 +13,7 @@ namespace WeatherForecast.Infrastructure.Repository
 
         public WeatherSummary? GetByTemperature(int temperature)
         {
-            var summary = applicationDb.WeatherSummaries.Where(x=> temperature < x.MaxTemperatureValue &&  temperature > x.MinTemperatureValue).FirstOrDefault();
+            var summary = applicationDb.WeatherSummaries.Where(x=> x.MaxTemperatureValue >= temperature &&  x.MinTemperatureValue <= temperature).FirstOrDefault();
             return summary;
         }
     }
