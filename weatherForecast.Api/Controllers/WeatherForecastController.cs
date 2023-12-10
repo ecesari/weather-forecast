@@ -27,9 +27,10 @@ namespace WeatherForecast.Api.Controllers
         /// <param name="command">set temperature for a certain day in Celcius</param>
         /// <returns>Ok if forecast was saved</returns>
         [HttpPost]
-        [ProducesResponseType(typeof(Guid), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<ActionResult> CreateForecast([FromBody] SetWeatherForecastModel model)
         {
             var command = mapper.Map<SetWeatherForecastCommand>(model);
@@ -43,9 +44,10 @@ namespace WeatherForecast.Api.Controllers
         /// <param name="command">set today's temperature in Celcius</param>
         /// <returns>Ok if forecast was saved</returns>
         [HttpPost("today")]
-        [ProducesResponseType(typeof(Guid), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<ActionResult> CreateForecastForToday([FromBody] int temperature)
         {
             var command = mapper.Map<SetWeatherForecastCommand>(temperature);
