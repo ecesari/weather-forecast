@@ -6,6 +6,6 @@ namespace WeatherForecast.Application.Common.Interfaces
     public interface IApplicationDbContext
     {
         public DbSet<Domain.Entities.Forecast> WeatherForecasts { get; set; }
-        public DbSet<WeatherSummary> WeatherSummaries { get; set; }
+        public DbSet<Summary> WeatherSummaries { get; set; }
     }
 }

@@ -13,9 +13,9 @@ namespace WeatherForecast.Application.WeatherForecast.Queries.GetWeatherForecast
 
     public class GetWeatherForecastsQueryHandler : IRequestHandler<GetWeatherForecastsQuery, List<WeatherForecastResponse>>
     {
-        private readonly IWeatherForecastRepository repository;
+        private readonly IForecastRepository repository;
         private readonly IMapper mapper;
-        public GetWeatherForecastsQueryHandler(IWeatherForecastRepository repository, IMapper mapper)
+        public GetWeatherForecastsQueryHandler(IForecastRepository repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;

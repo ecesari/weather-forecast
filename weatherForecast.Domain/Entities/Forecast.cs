@@ -1,4 +1,6 @@
-﻿namespace WeatherForecast.Domain.Entities
+﻿using WeatherForecast.Domain.SeedWork;
+
+namespace WeatherForecast.Domain.Entities
 {
     public class Forecast : BaseEntity
     {

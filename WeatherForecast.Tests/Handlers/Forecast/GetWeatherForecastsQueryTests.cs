@@ -7,7 +7,7 @@ namespace WeatherForecast.Tests.Handlers.Clients
 {
     public class GetWeatherForecastsQueryTests
     {
-        private readonly Mock<IWeatherForecastRepository> repositoryMock;
+        private readonly Mock<IForecastRepository> repositoryMock;
         private readonly Mock<IMapper> mapperMock;
         private readonly GetWeatherForecastsQueryHandler handler;
 
@@ -15,7 +15,7 @@ namespace WeatherForecast.Tests.Handlers.Clients
 
         public GetWeatherForecastsQueryTests()
         {
-            repositoryMock = new Mock<IWeatherForecastRepository>();
+            repositoryMock = new Mock<IForecastRepository>();
             mapperMock = new Mock<IMapper>();
             handler = new GetWeatherForecastsQueryHandler(repositoryMock.Object, mapperMock.Object);
         }

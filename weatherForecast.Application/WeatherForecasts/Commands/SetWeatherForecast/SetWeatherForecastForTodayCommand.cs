@@ -13,10 +13,10 @@ namespace WeatherForecast.Application.Clients.Commands.SetWeatherForecastCommand
 
     public class SetWeatherForecastCommandHandler : IRequestHandler<SetWeatherForecastCommand, Guid>
     {
-        private readonly IWeatherForecastRepository repository;
-        private readonly IWeatherSummaryRepository weatherSummaryRepository;
+        private readonly IForecastRepository repository;
+        private readonly ISummaryRepository weatherSummaryRepository;
 
-        public SetWeatherForecastCommandHandler(IWeatherForecastRepository repository, IWeatherSummaryRepository weatherSummaryRepository)
+        public SetWeatherForecastCommandHandler(IForecastRepository repository, ISummaryRepository weatherSummaryRepository)
         {
             this.repository = repository;
             this.weatherSummaryRepository = weatherSummaryRepository;
@@ -24,7 +24,7 @@ namespace WeatherForecast.Application.Clients.Commands.SetWeatherForecastCommand
 
         public async Task<Guid> Handle(SetWeatherForecastCommand command, CancellationToken cancellationToken)
         {
-            var weatherSummary = weatherSummaryRepository.GetByTemperature(command.Temperature) ?? throw new EntityNotFoundException(nameof(WeatherSummary), command.Temperature);
+            var weatherSummary = weatherSummaryRepository.GetByTemperature(command.Temperature) ?? throw new EntityNotFoundException(nameof(Summary), command.Temperature);
             var forecastAlreadyExists = command.Date.HasValue && repository.ForecastExistsForDate(command.Date.Value);
             if (forecastAlreadyExists) { throw new EntityAlreadyExistsException($"Forecast for date {command.Date} already exists."); }
             var date = command.Date ?? DateOnly.FromDateTime(DateTime.Now);

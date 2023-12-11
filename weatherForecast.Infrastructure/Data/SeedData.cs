@@ -27,26 +27,26 @@ namespace WeatherForecast.Infrastructure.Data
 
         }
 
-        private static List<WeatherSummary> CreateSummaries()
+        private static List<Summary> CreateSummaries()
         {
-            List<WeatherSummary> summaries =
+            List<Summary> summaries =
             [
-                new WeatherSummary { Description = "Freezing", MinTemperatureValue = -60, MaxTemperatureValue = -40 },
-                new WeatherSummary { Description = "Bracing", MinTemperatureValue = -40, MaxTemperatureValue = -20 },
-                new WeatherSummary { Description = "Cool", MinTemperatureValue = -20, MaxTemperatureValue = -10 },
-                new WeatherSummary { Description = "Mild", MinTemperatureValue = -10, MaxTemperatureValue = 0 },
-                new WeatherSummary { Description = "Warm", MinTemperatureValue = 0, MaxTemperatureValue = 10 },
-                new WeatherSummary { Description = "Balmy", MinTemperatureValue = 10, MaxTemperatureValue = 20 },
-                new WeatherSummary { Description = "Hot", MinTemperatureValue = 20, MaxTemperatureValue = 30 },
-                new WeatherSummary { Description = "Sweltering", MinTemperatureValue = 30, MaxTemperatureValue = 40 },
-                new WeatherSummary { Description = "Scorching", MinTemperatureValue = 40, MaxTemperatureValue = 50 },
-                new WeatherSummary { Description = "Bracing", MinTemperatureValue = 50, MaxTemperatureValue = 60 },
+                new Summary { Description = "Freezing", MinTemperatureValue = -60, MaxTemperatureValue = -40 },
+                new Summary { Description = "Bracing", MinTemperatureValue = -40, MaxTemperatureValue = -20 },
+                new Summary { Description = "Cool", MinTemperatureValue = -20, MaxTemperatureValue = -10 },
+                new Summary { Description = "Mild", MinTemperatureValue = -10, MaxTemperatureValue = 0 },
+                new Summary { Description = "Warm", MinTemperatureValue = 0, MaxTemperatureValue = 10 },
+                new Summary { Description = "Balmy", MinTemperatureValue = 10, MaxTemperatureValue = 20 },
+                new Summary { Description = "Hot", MinTemperatureValue = 20, MaxTemperatureValue = 30 },
+                new Summary { Description = "Sweltering", MinTemperatureValue = 30, MaxTemperatureValue = 40 },
+                new Summary { Description = "Scorching", MinTemperatureValue = 40, MaxTemperatureValue = 50 },
+                new Summary { Description = "Bracing", MinTemperatureValue = 50, MaxTemperatureValue = 60 },
             ];
 
             return summaries;
         }
 
-        private static List<Forecast> CreateForecasts(List<WeatherSummary> summaries)
+        private static List<Forecast> CreateForecasts(List<Summary> summaries)
         {
             var todaysDate = DateOnly.FromDateTime(DateTime.Now);
             var forecasts = new List<Forecast>();

@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WeatherForecast.Domain.Entities;
-using WeatherForecast.Domain.Repository;
+using WeatherForecast.Domain.SeedWork;
 using WeatherForecast.Infrastructure.Data;
 
 namespace WeatherForecast.Infrastructure.Repository.Base

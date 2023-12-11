@@ -1,6 +1,4 @@
-﻿using WeatherForecast.Domain.Entities;
-
-namespace WeatherForecast.Domain.Repository
+﻿namespace WeatherForecast.Domain.SeedWork
 {
     public interface IBaseRepository<T> where T : BaseEntity
     {

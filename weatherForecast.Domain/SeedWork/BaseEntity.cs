@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WeatherForecast.Domain.Entities
+namespace WeatherForecast.Domain.SeedWork
 {
     public class BaseEntity
     {

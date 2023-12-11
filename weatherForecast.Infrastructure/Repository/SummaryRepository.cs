@@ -5,13 +5,13 @@ using WeatherForecast.Infrastructure.Repository.Base;
 
 namespace WeatherForecast.Infrastructure.Repository
 {
-    public class WeatherSummaryRepository : BaseRepository<WeatherSummary>, IWeatherSummaryRepository
+    public class SummaryRepository : BaseRepository<Summary>, ISummaryRepository
     {
-        public WeatherSummaryRepository(ApplicationDbContext applicationDb) : base(applicationDb)
+        public SummaryRepository(ApplicationDbContext applicationDb) : base(applicationDb)
         {
         }
 
-        public WeatherSummary? GetByTemperature(int temperature)
+        public Summary? GetByTemperature(int temperature)
         {
             var summary = applicationDb.WeatherSummaries.Where(x=> x.MaxTemperatureValue >= temperature &&  x.MinTemperatureValue <= temperature).FirstOrDefault();
             return summary;

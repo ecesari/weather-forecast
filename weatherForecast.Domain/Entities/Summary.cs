@@ -1,6 +1,8 @@
-﻿namespace WeatherForecast.Domain.Entities
+﻿using WeatherForecast.Domain.SeedWork;
+
+namespace WeatherForecast.Domain.Entities
 {
-    public class WeatherSummary : BaseEntity
+    public class Summary : BaseEntity
     {
         public int MinTemperatureValue { get; set; }
         public int MaxTemperatureValue { get; set; }
