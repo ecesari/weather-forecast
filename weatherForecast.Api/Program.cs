@@ -8,6 +8,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using WeatherForecast.Application.Clients.Commands.SetWeatherForecastCommand;
 using WeatherForecast.Application.WeatherForecasts.Commands.SetWeatherForecast;
+using WeatherForecast.Api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,8 +46,8 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-    app.UseSwagger();
-    app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Weather Forecast v1"); });
+app.UseSwagger();
+app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Weather Forecast v1"); });
 
 
 using (var scope = app.Services.CreateScope())
@@ -56,6 +57,9 @@ using (var scope = app.Services.CreateScope())
     var seedData = new SeedData(context);
     seedData.Seed();
 }
+
+app.UseMiddleware<CorrelationIdMiddleware>();
+app.UseMiddleware<LoggerMiddleware>();
 
 app.UseHttpsRedirection();
 
