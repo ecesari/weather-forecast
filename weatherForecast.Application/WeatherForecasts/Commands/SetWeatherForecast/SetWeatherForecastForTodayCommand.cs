@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using WeatherForecast.Application.Common.Exceptions;
 using WeatherForecast.Domain.Entities;
 using WeatherForecast.Domain.Repository;
@@ -15,15 +16,18 @@ namespace WeatherForecast.Application.Clients.Commands.SetWeatherForecastCommand
     {
         private readonly IForecastRepository repository;
         private readonly ISummaryRepository weatherSummaryRepository;
+        private readonly IValidator<SetWeatherForecastCommand> validator;
 
-        public SetWeatherForecastCommandHandler(IForecastRepository repository, ISummaryRepository weatherSummaryRepository)
+        public SetWeatherForecastCommandHandler(IForecastRepository repository, ISummaryRepository weatherSummaryRepository, IValidator<SetWeatherForecastCommand> validator)
         {
             this.repository = repository;
             this.weatherSummaryRepository = weatherSummaryRepository;
+            this.validator = validator;
         }
 
         public async Task<Guid> Handle(SetWeatherForecastCommand command, CancellationToken cancellationToken)
         {
+            validator.ValidateAndThrow(command);
             var weatherSummary = weatherSummaryRepository.GetByTemperature(command.Temperature) ?? throw new EntityNotFoundException(nameof(Summary), command.Temperature);
             var forecastAlreadyExists = command.Date.HasValue && repository.ForecastExistsForDate(command.Date.Value);
             if (forecastAlreadyExists) { throw new EntityAlreadyExistsException($"Forecast for date {command.Date} already exists."); }

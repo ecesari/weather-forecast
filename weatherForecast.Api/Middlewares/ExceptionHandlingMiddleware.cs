@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using WeatherForecast.Application.Common.Exceptions;
 
@@ -44,6 +45,10 @@ namespace WeatherForecast.Api.Middlewares
                     errorResponse.Message = ex.Message;
                     break;
                 case EntityNotFoundException ex:
+                    response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    errorResponse.Message = ex.Message;
+                    break;
+                case ValidationException ex:
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
                     errorResponse.Message = ex.Message;
                     break;

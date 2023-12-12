@@ -4,6 +4,10 @@ using WeatherForecast.Application.WeatherForecast.Queries.GetWeatherForecasts;
 using WeatherForecast.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Asp.Versioning;
+using FluentValidation;
+using Microsoft.AspNetCore.Identity;
+using WeatherForecast.Application.Clients.Commands.SetWeatherForecastCommand;
+using WeatherForecast.Application.WeatherForecasts.Commands.SetWeatherForecast;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +31,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseInMemo
 builder.Services.AddRepositories();
 builder.Services.AddAutoMapper();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetWeatherForecastsQuery).Assembly));
+builder.Services.AddScoped<IValidator<SetWeatherForecastCommand>, SetWeatherForecastCommandValidator>();
+
 
 builder.Services.AddApiVersioning(x =>
 {
