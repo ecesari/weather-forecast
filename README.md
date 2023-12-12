@@ -23,15 +23,11 @@ It is designed to provide a scalable and modular solution. The project is writte
 
 You can either run the application on your local machine or use docker to run it. To run the Weather Forecast application using Docker Compose, follow these steps:
 
-1. Build the Docker image:
-
-   ```bash
-   docker-compose build
-2. Start the application:
+1. Start the application:
    ```bash
    docker-compose up
 
-3. Open your browser and go to http://localhost:8080/swagger for the list of endpoints.
+2. Open your browser and go to http://localhost:8080/swagger for the list of endpoints.
 
 ## Features
 
